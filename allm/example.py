@@ -1,5 +1,6 @@
 import os
-from nanovllm import LLM, SamplingParams
+from allm.llm import LLM
+from allm.sampling_params import SamplingParams
 from transformers import AutoTokenizer
 
 
@@ -18,10 +19,11 @@ def main():
             [{"role": "user", "content": prompt}],
             tokenize=False,
             add_generation_prompt=True,
-            enable_thinking=True
+            enable_thinking=True,
         )
         for prompt in prompts
     ]
+
     outputs = llm.generate(prompts, sampling_params)
 
     for prompt, output in zip(prompts, outputs):
